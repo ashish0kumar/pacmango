@@ -16,9 +16,20 @@ func (g *GameState) mainLoop() {
 	delay(1000)
 
 	for g.Food > 0 {
+		prevPoints := g.Points
+		prevInvincible := g.Invincible
 		g.movePacman()
 		g.drawWindow()
 		g.checkCollision()
+
+		// Play eat sound effect (oto)
+		if g.Points > prevPoints {
+			PlayEatSoundOto()
+		}
+		// Play powerup sound effect (oto)
+		if g.Invincible && !prevInvincible {
+			PlayPowerupSoundOto()
+		}
 
 		g.moveGhosts()
 		g.drawWindow()
@@ -74,6 +85,7 @@ func (g *GameState) checkCollision() {
 				g.GhostsInARow *= 2
 				g.Win.Refresh()
 
+				PlayDeathSoundOto() // Play death sound effect (oto)
 				delay(1000)
 				g.Ghosts[i].Pos = g.Ghosts[i].StartPos
 			} else {
@@ -82,6 +94,7 @@ func (g *GameState) checkCollision() {
 				g.Win.MovePrint(g.Pacman.Pos.Y, g.Pacman.Pos.X, "X")
 				g.Win.Refresh()
 
+				PlayDeathSoundOto() // Play death sound effect (oto)
 				g.Lives--
 				g.clearStatus()
 				delay(1000)

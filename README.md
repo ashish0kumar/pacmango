@@ -63,6 +63,31 @@ pacmango --level 5
 - Avoid ghosts unless you're invincible
 - Score points by eating pellets and ghosts
 
+## Audio Features
+
+- Background music plays automatically at game start (requires `assets/music/background.wav`).
+- Sound effects play for pellet, powerup, and death events (requires `assets/sounds/eat.wav`, `assets/sounds/powerup.wav`, and `assets/sounds/death.wav`).
+- Audio playback uses the [oto](https://github.com/hajimehoshi/oto) and [go-audio/wav](https://github.com/go-audio/wav) Go libraries for reliable cross-platform sound.
+
+### Adding Sound Effects
+
+Place your sound files in:
+- `assets/music/background.wav` (background music)
+- `assets/sounds/eat.wav` (pellet collection)
+- `assets/sounds/powerup.wav` (powerup collection)
+- `assets/sounds/death.wav` (death event)
+
+You can use free sound effects from sites like [freesound.org](https://freesound.org/) or create your own.
+
+### Dependencies
+
+Install required Go packages:
+```bash
+go get github.com/hajimehoshi/oto github.com/go-audio/wav
+```
+
+If you encounter issues with audio playback, ensure your system supports audio output from Go programs.
+
 ## Acknowledgements
 
 - Original Pacman by Namco

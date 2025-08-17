@@ -23,6 +23,9 @@ func main() {
 
 	game := NewGameState()
 
+	InitializeOto() // Initialize oto audio context
+	PlayBackgroundMusicOto() // Start background music in a goroutine (oto)
+
 	if err := initCurses(); err != nil {
 		fmt.Fprintf(os.Stderr, "Error initializing curses: %v\n", err)
 		os.Exit(1)
